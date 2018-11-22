@@ -2,7 +2,7 @@
 
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 # 参考文档
 # https://python-gtk-3-tutorial.readthedocs.io/en/latest/builder.html
@@ -29,11 +29,19 @@ class Handler:
         elif text in "cls":
             resultEntry.set_text('')
 
+def apply_css(widget, provider):
+    Gtk.StyleContext.add_provider(widget.get_style_context(),provider,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+    if isinstance(widget, Gtk.Container):
+        widget.forall(apply_css, provider)
+
 if __name__ == "__main__":
     builder = Gtk.Builder()
     builder.add_from_file("calculator.glade")
     builder.connect_signals(Handler())
     window = builder.get_object("window")
     resultEntry = builder.get_object("resultEntry")
+    provider = Gtk.CssProvider()
+    provider.load_from_data(open("style/elementary/gtk-dark.css").read())
+    apply_css(window, provider)
     window.show_all()
     Gtk.main()
