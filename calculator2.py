@@ -4,9 +4,6 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gio
 
-# 参考文档
-# https://python-gtk-3-tutorial.readthedocs.io/en/latest/builder.html
-
 resultEntry = None
 window = None
 

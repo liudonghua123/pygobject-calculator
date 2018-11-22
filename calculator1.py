@@ -1,11 +1,5 @@
 #coding: utf-8
 
-# 参考文档
-# https://pygobject.readthedocs.io/en/latest/getting_started.html
-# https://python-gtk-3-tutorial.readthedocs.io/en/latest/introduction.html
-# https://python-gtk-3-tutorial.readthedocs.io/en/latest/layout.html#grid
-# https://lazka.github.io/pgi-docs/Gtk-3.0/classes.html
-
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
