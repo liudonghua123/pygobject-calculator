@@ -8,10 +8,27 @@ from gi.repository import Gtk, Gio
 # https://python-gtk-3-tutorial.readthedocs.io/en/latest/builder.html
 
 resultEntry = None
+window = None
 
 class Handler:
     def on_window_destroy(self, *args):
         Gtk.main_quit()
+
+    def on_menuitem_activate(self, widget):
+        text = widget.get_label()
+        if text == 'StyleElementary':
+            provider = Gtk.CssProvider()
+            provider.load_from_data(open("style/elementary/gtk.css").read())
+            apply_css(window, provider)
+            window.show_all()
+        elif text == 'StyleElementaryDark':
+            provider = Gtk.CssProvider()
+            provider.load_from_data(open("style/elementary/gtk-dark.css").read())
+            apply_css(window, provider)
+            window.show_all()
+        elif text == 'Exit':
+            Gtk.main_quit()
+            
 
     def on_button_clicked(self, widget):
         text = widget.get_label()
@@ -40,8 +57,5 @@ if __name__ == "__main__":
     builder.connect_signals(Handler())
     window = builder.get_object("window")
     resultEntry = builder.get_object("resultEntry")
-    provider = Gtk.CssProvider()
-    provider.load_from_data(open("style/elementary/gtk-dark.css").read())
-    apply_css(window, provider)
     window.show_all()
     Gtk.main()

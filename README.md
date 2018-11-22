@@ -16,6 +16,10 @@ This is just for teaching purpose, `calculator1.py` is a plain widgets created b
 
 ![](resources/snapshot_default.png)
 
+![](resources/snapshot_elementary.png)
+
+![](resources/snapshot_elementary_dark.png)
+
 ### license
 
 MIT
